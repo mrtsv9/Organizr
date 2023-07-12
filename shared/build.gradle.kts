@@ -10,14 +10,6 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    sqldelight {
-        databases {
-            create("Database") {
-                packageName.set("com.mrtsv9")
-            }
-        }
-    }
-
     android {
         compilations.all {
             kotlinOptions {
@@ -42,10 +34,6 @@ kotlin {
                 // Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
 
-                // WorkManager
-                val workVersion = "2.8.1"
-                implementation("androidx.work:work-runtime-ktx:$workVersion")
-
                 // FlowMVI? mb isn't need to be here
                 val flowMVIVersion = "1.2.0-alpha01"
                 implementation("pro.respawn.flowmvi:core:$flowMVIVersion")
@@ -53,6 +41,9 @@ kotlin {
                 // Koin
                 val koinVersion = "3.4.2"
                 implementation("io.insert-koin:koin-core:$koinVersion")
+
+                // Kotlin Datetime
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
             }
         }
         val commonTest by getting {
@@ -63,12 +54,27 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("app.cash.sqldelight:android-driver:2.0.0-rc02")
+
+                // WorkManager
+                val workVersion = "2.8.1"
+                implementation("androidx.work:work-runtime-ktx:$workVersion")
+
+                // Koin Compose
+                implementation("io.insert-koin:koin-androidx-compose:3.4.2")
             }
         }
         val iosMain by getting {
             dependencies {
                 implementation("app.cash.sqldelight:native-driver:2.0.0-rc02")
             }
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("TaskDatabase") {
+            packageName.set("com.mrtsv9.organizr.database")
         }
     }
 }

@@ -1,0 +1,29 @@
+CREATE TABLE taskEntity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    timeLength INTEGER NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+insertTask:
+INSERT OR REPLACE
+INTO taskEntity(
+    id,
+    title,
+    timeLength,
+    createdAt
+) VALUES (?, ?, ?, ?);
+
+getAllTasks:
+SELECT *
+FROM taskEntity
+ORDER BY timeLength ASC;
+
+getTaskById:
+SELECT *
+FROM taskEntity
+WHERE id = ?;
+
+deleteTaskById:
+DELETE FROM taskEntity
+WHERE id = ?;

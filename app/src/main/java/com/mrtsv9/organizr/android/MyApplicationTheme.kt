@@ -45,7 +45,6 @@ fun MyApplicationTheme(
         medium = RoundedCornerShape(4.dp),
         large = RoundedCornerShape(0.dp)
     )
-
     MaterialTheme(
         colors = colors,
         typography = typography,
