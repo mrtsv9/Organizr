@@ -7,6 +7,10 @@ import com.mrtsv9.organizr.domain.util.DateTimeUtil
 
 class TaskDaoImpl(db: TaskDatabase) : TaskDao {
 
+    init {
+        val a = 5
+    }
+
     private val queries = db.taskQueries
 
     override suspend fun insertTask(task: Task) {
