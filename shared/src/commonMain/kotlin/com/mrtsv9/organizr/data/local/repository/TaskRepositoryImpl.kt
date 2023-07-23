@@ -7,10 +7,7 @@ import kotlinx.coroutines.flow.flow
 
 class TaskRepositoryImpl(private val dao: TaskDao) : TaskRepository {
 
-    init {
-        val a = 5
-    }
-    override suspend fun getAllTasks() = flow {
+    override fun getAllTasks() = flow {
         emit(dao.getAllTasks())
     }
 

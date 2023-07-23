@@ -51,26 +51,10 @@ kotlin {
             dependencies {
                 implementation("app.cash.sqldelight:android-driver:2.0.0-rc02")
 
-                // Base
-                implementation("androidx.compose.ui:ui:1.4.3")
-                implementation("androidx.compose.ui:ui-tooling:1.4.3")
-                implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
-                implementation("androidx.compose.foundation:foundation:1.4.3")
-                implementation("androidx.compose.material:material:1.4.3")
-                implementation("androidx.activity:activity-compose:1.7.1")
-
-                // FlowMVI
-                val flowMVIVersion = "1.2.0-alpha01"
-                implementation("pro.respawn.flowmvi:core:$flowMVIVersion")
-                implementation("pro.respawn.flowmvi:android-compose:$flowMVIVersion")
-                implementation("pro.respawn.flowmvi:android:$flowMVIVersion")
-
-                // WorkManager
-                val workVersion = "2.8.1"
-                implementation("androidx.work:work-runtime-ktx:$workVersion")
-
-                // Koin Compose
-                implementation("io.insert-koin:koin-androidx-compose:3.4.2")
+                // Koin
+                implementation("io.insert-koin:koin-androidx-compose:3.4.5")
+                implementation("io.insert-koin:koin-android:3.4.2")
+                implementation("io.insert-koin:koin-core:3.4.2")
             }
         }
         val iosMain by getting {

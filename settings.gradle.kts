@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Organizr"
 include(":app")
 include(":shared")
+include(":features")

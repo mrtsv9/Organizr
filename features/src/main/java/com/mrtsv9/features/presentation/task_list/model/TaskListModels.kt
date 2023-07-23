@@ -1,4 +1,4 @@
-package com.mrtsv9.organizr.presentation.task_list
+package com.mrtsv9.features.presentation.task_list.model
 
 import pro.respawn.flowmvi.MVIAction
 import pro.respawn.flowmvi.MVIIntent

@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(project(":features"))
 
     // Base
     implementation("androidx.compose.ui:ui:1.4.3")
@@ -50,20 +51,20 @@ dependencies {
     implementation("androidx.compose.material:material:1.4.3")
     implementation("androidx.activity:activity-compose:1.7.1")
 
-    // Coroutines-Android
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
-
-    // Compose Animation
-    implementation("androidx.compose.animation:animation:1.4.3")
-
-    // Compose Navigation
-    val navigationVersion = "1.8.42-beta"
-    implementation("io.github.raamcosta.compose-destinations:core:$navigationVersion")
-    ksp("io.github.raamcosta.compose-destinations:ksp:$navigationVersion")
-
-    // FlowMVI
-    val flowMVIVersion = "1.2.0-alpha01"
-    implementation("pro.respawn.flowmvi:android-compose:$flowMVIVersion")
+//    // Coroutines-Android
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
+//
+//    // Compose Animation
+//    implementation("androidx.compose.animation:animation:1.4.3")
+//
+//    // Compose Navigation
+//    val navigationVersion = "1.8.42-beta"
+//    implementation("io.github.raamcosta.compose-destinations:core:$navigationVersion")
+//    ksp("io.github.raamcosta.compose-destinations:ksp:$navigationVersion")
+//
+//    // FlowMVI
+//    val flowMVIVersion = "1.2.0-alpha01"
+//    implementation("pro.respawn.flowmvi:android-compose:$flowMVIVersion")
 
     // Koin
     val koinAndroidComposeVersion = "3.4.5"
