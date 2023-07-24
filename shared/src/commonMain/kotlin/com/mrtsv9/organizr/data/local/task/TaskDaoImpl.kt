@@ -11,6 +11,15 @@ class TaskDaoImpl(db: TaskDatabase) : TaskDao {
 
     override suspend fun insertTask(task: Task) {
         queries.insertTask(
+            id = null,
+            title = task.title,
+            timeLength = task.timeLength,
+            createdAt = DateTimeUtil.toEpochMillis(task.createdAt)
+        )
+    }
+
+    override suspend fun updateTask(task: Task) {
+        queries.updateTask(
             id = task.id,
             title = task.title,
             timeLength = task.timeLength,

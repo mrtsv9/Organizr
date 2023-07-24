@@ -6,7 +6,7 @@ CREATE TABLE taskEntity(
 );
 
 insertTask:
-INSERT OR REPLACE
+INSERT
 INTO taskEntity(
     id,
     title,
@@ -27,3 +27,12 @@ WHERE id = ?;
 deleteTaskById:
 DELETE FROM taskEntity
 WHERE id = ?;
+
+updateTask:
+INSERT OR REPLACE
+INTO taskEntity(
+    id,
+    title,
+    timeLength,
+    createdAt
+) VALUES (?, ?, ?, ?);
