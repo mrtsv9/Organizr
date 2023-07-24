@@ -1,4 +1,4 @@
-package com.mrtsv9.features.presentation.task_list.model
+package com.mrtsv9.features.presentation.main_screen.model
 
 import com.mrtsv9.organizr.domain.local.task.Task
 

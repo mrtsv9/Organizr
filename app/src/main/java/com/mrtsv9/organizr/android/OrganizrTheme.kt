@@ -7,6 +7,7 @@ import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -22,28 +23,57 @@ fun OrganizrTheme(
 ) {
     val colors = if (darkTheme) {
         darkColors(
-            primary = Color(0xFFBB86FC),
-            primaryVariant = Color(0xFF3700B3),
-            secondary = Color(0xFF03DAC5)
+            primary = Color(0xFF141218),
+            primaryVariant = Color(0xFF1C1B1F),
+            secondary = Color(0xFFE6E0E9),
+            background = Color(0xFFD0BCFF),
+            onBackground = Color(0xFF4F378B)
         )
     } else {
         lightColors(
-            primary = Color(0xFF6200EE),
-            primaryVariant = Color(0xFF3700B3),
-            secondary = Color(0xFF03DAC5)
+            primary = Color(0xFF141218),
+            primaryVariant = Color(0xFF1C1B1F),
+            secondary = Color(0xFFE6E0E9),
+            background = Color(0xFFD0BCFF),
+            onBackground = Color(0xFF4F378B)
         )
     }
     val typography = Typography(
+        h1 = TextStyle(
+            fontFamily = FontFamily.Default,
+            fontWeight = FontWeight.Normal,
+            fontSize = 22.sp,
+            color = colors.secondary
+        ),
+        h2 = TextStyle(
+            fontFamily = FontFamily.Default,
+            fontWeight = FontWeight.Normal,
+            fontSize = 18.sp,
+            color = colors.primary
+        ),
+        h3 = TextStyle(
+            fontFamily = FontFamily.Default,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            color = colors.secondary
+        ),
         body1 = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Normal,
-            fontSize = 16.sp
+            fontSize = 14.sp,
+            color = colors.secondary
+        ),
+        body2 = TextStyle(
+            fontFamily = FontFamily.Default,
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            color = colors.secondary
         )
     )
     val shapes = Shapes(
         small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(4.dp),
-        large = RoundedCornerShape(0.dp)
+        medium = RoundedCornerShape(8.dp),
+        large = RoundedCornerShape(16.dp)
     )
     MaterialTheme(
         colors = colors,

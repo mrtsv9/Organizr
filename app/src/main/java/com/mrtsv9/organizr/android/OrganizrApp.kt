@@ -13,10 +13,6 @@ class OrganizrApp : Application() {
         startKoin {
             androidContext(this@OrganizrApp)
             androidLogger()
-//            val test = module {
-//                viewModel { MainActivity.TestViewModel() }
-//            }
-//            modules(appModule)
             modules(listOf(commonModule(), featureModule))
         }
     }

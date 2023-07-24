@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Organizr</string>
+    <string name="ic_add">Icon add</string>
+    <string name="ic_pen">Edit icon</string>
+    <string name="tasks_for_the_day">Tasks for the day</string>
+</resources>

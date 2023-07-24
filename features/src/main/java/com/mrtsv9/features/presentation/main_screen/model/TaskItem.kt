@@ -1,4 +1,4 @@
-package com.mrtsv9.features.presentation.task_list.model
+package com.mrtsv9.features.presentation.main_screen.model
 
 import androidx.compose.runtime.Immutable
 import kotlinx.datetime.LocalDateTime

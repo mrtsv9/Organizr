@@ -50,6 +50,7 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.4.3")
     implementation("androidx.compose.material:material:1.4.3")
     implementation("androidx.activity:activity-compose:1.7.1")
+    implementation("androidx.compose.material3:material3:1.1.1")
 
 //    // Coroutines-Android
 //    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
