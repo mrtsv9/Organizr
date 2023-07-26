@@ -14,23 +14,23 @@ import pro.respawn.flowmvi.android.MVIViewModel
 import java.util.UUID
 import kotlin.random.Random
 
-class MainScreenViewModel(
+class MainViewModel(
     repository: MainRepository
 ) : MVIViewModel<MainScreenState, MainScreenIntent, MainScreenAction>(initialState = MainScreenState.Loading) {
 
     init {
-//        viewModelScope.launch {
-//            repeat(10) {
-//                repository.insertTask(
-//                    Task(
-//                        Random.nextLong(100),
-//                        UUID.randomUUID().toString(),
-//                        Random.nextLong(100),
-//                        DateTimeUtil.now()
-//                    )
-//                )
-//            }
-//        }
+        viewModelScope.launch {
+            repeat(10) {
+                repository.insertTask(
+                    Task(
+                        0,
+                        UUID.randomUUID().toString(),
+                        Random.nextLong(100),
+                        DateTimeUtil.now()
+                    )
+                )
+            }
+        }
         repository.getAllTasks()
             .onEach(::produceState)
             .consume()
@@ -38,8 +38,8 @@ class MainScreenViewModel(
 
     override suspend fun reduce(intent: MainScreenIntent) {
         when (intent) {
-            is MainScreenIntent.AddTaskClicked -> {
-                // TODO:
+            is MainScreenIntent.EditTaskClicked -> {
+                send(MainScreenAction.ShowEditScreen(null))
             }
 
             is MainScreenIntent.FabClicked -> {

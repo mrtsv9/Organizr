@@ -16,10 +16,11 @@ sealed interface MainScreenState : MVIState {
 @Stable
 sealed interface MainScreenIntent : MVIIntent {
     object FabClicked : MainScreenIntent
-    object AddTaskClicked : MainScreenIntent
+    object EditTaskClicked : MainScreenIntent
 }
 
 @Stable
 sealed interface MainScreenAction : MVIAction {
     data class ShowSnackbar(val message: String) : MainScreenAction
+    data class ShowEditScreen(val taskItem: TaskItem?) : MainScreenAction
 }
