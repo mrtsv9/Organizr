@@ -60,7 +60,8 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.4.3")
     implementation("androidx.compose.material:material:1.4.3")
     implementation("androidx.activity:activity-compose:1.7.1")
-    implementation("androidx.compose.material3:material3:1.1.1")
+    implementation("androidx.compose.material3:material3-android:1.2.0-alpha03")
+    implementation("androidx.compose.material3:material3:1.2.0-alpha03")
 
     // FlowMVI
     val flowMVIVersion = "1.2.0-alpha01"

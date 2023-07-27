@@ -1,7 +1,5 @@
 package com.mrtsv9.organizr.domain.local.task
 
-import com.mrtsv9.organizr.domain.local.task.Task
-
 interface TaskDao {
     suspend fun insertTask(task: Task)
     suspend fun updateTask(task: Task)

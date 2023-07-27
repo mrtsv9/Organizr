@@ -9,14 +9,15 @@ import pro.respawn.flowmvi.MVIState
 sealed interface MainScreenState : MVIState {
     object Loading : MainScreenState
     data class DisplayingTasks(
-        val tasks: List<TaskItem>
+        var tasks: List<TaskItem>
     ) : MainScreenState
 }
 
 @Stable
 sealed interface MainScreenIntent : MVIIntent {
     object FabClicked : MainScreenIntent
-    object EditTaskClicked : MainScreenIntent
+    data class AddOrEditTaskClicked(val taskItem: TaskItem?) : MainScreenIntent
+    data class SaveTaskClicked(val taskItem: TaskItem) : MainScreenIntent
 }
 
 @Stable
