@@ -11,8 +11,7 @@ class MainRepositoryImpl(private val dao: TaskDao) : MainRepository {
         emit(dao.getAllTasks())
     }
 
-    override suspend fun insertTask(task: Task): Task {
+    override suspend fun insertTask(task: Task) {
         dao.insertTask(task)
-        return task
     }
 }

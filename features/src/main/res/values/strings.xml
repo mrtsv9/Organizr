@@ -4,4 +4,7 @@
     <string name="ic_add">Icon add</string>
     <string name="ic_pen">Edit icon</string>
     <string name="tasks_for_the_day">Tasks for the day</string>
+    <string name="select_time">Select time</string>
+    <string name="enter_valid_title">Please enter a value up to 40 characters long</string>
+    <string name="duration">Duration</string>
 </resources>

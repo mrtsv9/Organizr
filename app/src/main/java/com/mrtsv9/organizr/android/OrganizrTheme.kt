@@ -26,7 +26,8 @@ fun OrganizrTheme(
             primaryVariant = Color(0xFF1C1B1F),
             secondary = Color(0xFFE6E0E9),
             background = Color(0xFFD0BCFF),
-            onBackground = Color(0xFF4F378B)
+            onBackground = Color(0xFF4F378B),
+            onPrimary = Color(0xFFEED2D0)
         )
     } else {
         lightColors(
@@ -34,7 +35,8 @@ fun OrganizrTheme(
             primaryVariant = Color(0xFF1C1B1F),
             secondary = Color(0xFFE6E0E9),
             background = Color(0xFFD0BCFF),
-            onBackground = Color(0xFF4F378B)
+            onBackground = Color(0xFF4F378B),
+            onPrimary = Color(0xFFF1CBC7)
         )
     }
     val typography = Typography(

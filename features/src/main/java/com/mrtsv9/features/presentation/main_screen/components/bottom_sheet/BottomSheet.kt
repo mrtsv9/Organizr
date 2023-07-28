@@ -27,14 +27,18 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mrtsv9.features.R
 import com.mrtsv9.features.presentation.main_screen.model.MainScreenAction
@@ -42,6 +46,7 @@ import com.mrtsv9.features.presentation.main_screen.model.MainScreenIntent
 import com.mrtsv9.features.presentation.main_screen.model.TaskItem
 import com.mrtsv9.organizr.domain.util.DateTimeUtil
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import pro.respawn.flowmvi.android.compose.ConsumerScope
 
@@ -61,31 +66,32 @@ fun ConsumerScope<MainScreenIntent, MainScreenAction>.EditBottomSheet(
     var timePickerState by remember {
         mutableStateOf(TimePickerState(0, 0, true))
     }
+    var selectedDuration: String? by rememberSaveable {
+        mutableStateOf(null)
+    }
 
     fun closeWithReset() {
         isDialogShown = false
         timePickerState = TimePickerState(0, 0, true)
+        selectedDuration = null
+        text = ""
+    }
+
+    LaunchedEffect(sheetState) {
+        snapshotFlow { sheetState.isVisible }.collect { isVisible ->
+            if(!isVisible) {
+                closeWithReset()
+            }
+        }
     }
     if (isDialogShown) {
         TimePickerDialog(
             onCancel = { closeWithReset() },
             onConfirm = {
-                send(
-                    MainScreenIntent.SaveTaskClicked(
-                        TaskItem(
-                            0,
-                            text,
-                            (timePickerState.hour * 60 + timePickerState.minute).toLong(),
-                            DateTimeUtil.now()
-                        )
-                    )
-                )
-                closeWithReset()
-                scope.launch {
-                    sheetState.hide()
-                }
+                selectedDuration = "${timePickerState.hour}" + ":${timePickerState.minute}"
+                isDialogShown = false
             },
-            title = "Duration",
+            title = stringResource(id = R.string.duration),
         ) {
             TimePicker(state = timePickerState)
         }
@@ -134,7 +140,7 @@ fun ConsumerScope<MainScreenIntent, MainScreenAction>.EditBottomSheet(
                     ),
                     supportingText = {
                         Text(
-                            text = "Please enter a value up to 40 characters long",
+                            text = stringResource(id = R.string.enter_valid_title),
                             style = MaterialTheme.typography.body2
                         )
                     })
@@ -146,19 +152,29 @@ fun ConsumerScope<MainScreenIntent, MainScreenAction>.EditBottomSheet(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Button(onClick = {
-                        isDialogShown = true
-                    }, modifier = Modifier.height(40.dp)) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_add),
-                            contentDescription = "Select time",
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Spacer(modifier = Modifier.padding(end = 8.dp))
-                        Text(
-                            text = "Select a time",
-                            style = MaterialTheme.typography.body1,
-                        )
+                    Button(
+                        onClick = {
+                            isDialogShown = true
+                        }, modifier = Modifier
+                            .width(150.dp)
+                            .height(40.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_add),
+                                contentDescription = "Select time",
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.padding(end = 8.dp))
+                            Text(
+                                text = selectedDuration
+                                    ?: stringResource(id = R.string.select_time),
+                                style = MaterialTheme.typography.body1,
+                            )
+                        }
                     }
                     IconButton(onClick = { }) {
                         Icon(
@@ -169,7 +185,22 @@ fun ConsumerScope<MainScreenIntent, MainScreenAction>.EditBottomSheet(
                     }
                 }
                 IconButton(
-                    onClick = { },
+                    onClick = {
+                        send(
+                            MainScreenIntent.SaveTaskClicked(
+                                TaskItem(
+                                    0,
+                                    text,
+                                    (timePickerState.hour * 60 + timePickerState.minute).toLong(),
+                                    DateTimeUtil.now()
+                                )
+                            )
+                        )
+                        closeWithReset()
+                        scope.launch {
+                            sheetState.hide()
+                        }
+                    },
                     modifier = Modifier
                         .padding(top = 24.dp)
                         .width(56.dp)
@@ -185,5 +216,6 @@ fun ConsumerScope<MainScreenIntent, MainScreenAction>.EditBottomSheet(
                     )
                 }
             }
-        }, content = { })
+        },
+        content = { })
 }
